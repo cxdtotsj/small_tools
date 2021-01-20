@@ -11,7 +11,10 @@ import sys
 import os
 
 origin = os.path.join(os.path.dirname(__file__), 'origin.txt')
-updated = os.path.join(os.path.dirname(__file__), 'updated.txt')
+updated = os.path.join(os.path.dirname(__file__), 'up.txt')
+
+print(origin)
+print(updated)
 
 with open(origin, 'r', encoding='utf-8') as ori:
     t = ''
@@ -32,6 +35,7 @@ with open(origin, 'r', encoding='utf-8') as ori:
 
 with open(updated, 'a', encoding='utf-8') as up:
     for i in t.split('\n'):
-        up.write(i+'\n'+'\n')
-        
+        # up.write(i+'\n'+'\n')
+        up.write(i+'\n')
+
         

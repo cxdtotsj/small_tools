@@ -2,6 +2,7 @@
 # @Author : chenxiaodong
 # @Email  : chenxiaodong@hotdb.cn
 
+import copy
 import re
 import time
 import sys
@@ -27,7 +28,7 @@ DATASOURCE_SIGNLE_PORT = 3307
 DATASOURCE_MASTER_PORT = 3308
 DATASOURCE_SLAVE_PORT = 3309
 SNAME = 'cxd'
-SPWD = '123456'
+SPWD = 'cxd123456'
 
 
 # MYSQL配置信息
@@ -74,6 +75,20 @@ DATABASES = {
         "password": "hotdb_datasource",
         "db": ""
     },
+    'hotdb_server_temp': {
+        "host": '192.168.220.137',
+        "port": 2563,
+        "user": "zy",
+        "password": "zy",
+        "db": ""
+    },
+    'datasource_temp': {
+        "host": '192.168.220.150',
+        "port": 3309,
+        "user": "cara",
+        "password": "123456",
+        "db": ""
+    }
 }
 
 
@@ -299,27 +314,6 @@ class DB:
         return stdout, stderr
 
 
+
 if __name__ == '__main__':
-    hotdb_server_3323 = DB('hotdb_server', db='SI_TEST')
-
-    s_18 = ('''DROP TABLE IF EXISTS `s18`;
-            CREATE TABLE `s18` (
-            `id` tinyint(2) NOT NULL AUTO_INCREMENT COMMENT '主键',
-            `name` varchar(10) DEFAULT '',
-            `sex` varchar(10),
-            PRIMARY KEY (`id`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;''')
-
-    s_19 = ('''DROP TABLE IF EXISTS `s19`;
-            CREATE TABLE `s19` (
-            `id` tinyint(2) NOT NULL AUTO_INCREMENT COMMENT '主键',
-            `name` varchar(10) DEFAULT '',
-            `sex` varchar(10),
-            PRIMARY KEY (`id`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;''')
-
-    for t in (s_18, s_19):
-        hotdb_server_3323.exeuteSQLs(s_18)
-        hotdb_server_3325 = DB('hotdb_server', port=3325)
-        hotdb_server_3325.executeSQL_3325('reload @@config;')
-        hotdb_server_3325.close_db()
+    pass
