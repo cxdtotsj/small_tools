@@ -29,6 +29,7 @@ DATASOURCE_MASTER_PORT = 3308
 DATASOURCE_SLAVE_PORT = 3309
 SNAME = 'cxd'
 SPWD = 'cxd123456'
+# SPWD = 'cxd123456'
 
 
 # MYSQL配置信息
@@ -122,7 +123,8 @@ class DB:
         :params config_key: conf.DATABASES 中，需要建立连接的Mysql配置信息
         """
         try:
-            conn = pymysql.connect(autocommit=True, cursorclass=DictCursor, **self.db_config)
+            # conn = pymysql.connect(autocommit=True, cursorclass=DictCursor, **self.db_config)
+            conn = pymysql.connect(cursorclass=DictCursor, **self.db_config)
         except ConnectionError as e:
             print(f"数据库连接失败: {e}")
         return conn
@@ -316,4 +318,10 @@ class DB:
 
 
 if __name__ == '__main__':
-    pass
+    import random
+    db = DB('hotdb_server', db='hotdb_test')
+
+    cursor = db._conn.cursor()
+    cursor.execute('''BEGIN;''')
+    while True:
+        cursor.execute('''UPDATE t SET name='b' WHERE id=1;''')
