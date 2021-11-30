@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 
 # 中午 12 点是白班
 
-first_work_time = datetime(year=2020, month=11, day=28, hour=6, minute=0, second=0)
+first_work_time = datetime(year=2021, month=8, day=4, hour=6, minute=0, second=0)
 
 work_day_time = 15
 
@@ -50,7 +50,7 @@ def word_shift(first_work_time, shifts):
 
 
 if __name__ == "__main__":
-    first_work_time = datetime(year=2020, month=11, day=28, hour=6, minute=0, second=0)
+    first_work_time = datetime(year=2021, month=8, day=4, hour=6, minute=0, second=0)
     print(word_shift(first_work_time, 3))
 
     print('在家的时间段')

@@ -9,15 +9,43 @@ mysql-connector 连接池
 import mysql.connector
 import mysql.connector.pooling
 
+import pymysql
+
 mysql_config = {
-    'user': 'cxd',
-    'password': '123456',
-    'host': '192.168.220.102',
-    'port': 3323,
-    'database': 'hotdb_test'
+    'user': 'root',
+    'password': 'root',
+    'host': '192.168.220.137',
+    'port': 2553,
+    'database': 'jwytest'
 }
 
-# conn = mysql.connector.connect(**mysql_config)
+# conn = mysql.connector.connect(**mysql_config, autocommit=True)
+conn = pymysql.connect(**mysql_config, autocommit=True)
+cursor = conn.cursor()
+
+# sql = rf'''CREATE TABLE `t_global` /* hotdb:020503 SHARD BY global on datanode '1154,1155,1156' */ (id int not null auto_increment primary key, a int(10)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'''
+
+# cursor.executemany(''''insert into t01 values (null,1,1.1,1.1,curdate(),now(),now(),now(),2016,'a','a','a','a','1','1','a'),(null,1,1.2,1.1,curdate(),now(),now(),now(),2016,'b',NULL,'a','a','1','1','b');''')
+
+# sql = '''/*!hotdb:dnid=all*/show tables;'''
+
+# cursor.execute('show create table join_a_jwy;')
+# print(cursor.fetchone())
+# cursor.execute('''select * from join_a_jwy limit 2;''')
+# data = cursor.fetchall()
+# print(cursor.description)
+# print(data)
+
+a = None
+b = 200
+c = 'Z'
+d = '二'
+e = 'now()'
+
+sql = f'''SELECT {a}, {b}, '{c}', '{d}', {e}'''
+
+cursor.execute(sql)
+print(cursor.fetchone())
 
 # for i in range(5):
 #     cursor = conn.cursor()
