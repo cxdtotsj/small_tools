@@ -15,11 +15,11 @@ Process 是进程，在python中是实际的并发
 '''
 
 info = {
-    "host": '192.168.220.102',
+    "host": '192.168.250.221',
     "port": 3323,
     "user": 'cxd',
     "password": '123456',
-    "db": "hotdb_test"
+    "db": "temp_db"
 }
 
 
@@ -30,6 +30,7 @@ def update_data(data):
         cursor = cnx.cursor()
         for i in range(data[0], data[1]):
             # print(i)
+            sql_1 = f'SELECT MED_LIST_CODG FROM trt_serv_b LIMIT {i}, 1'
             sql = f'''UPDATE test_dead SET j='GGGG' WHERE id={i};'''
             cursor.execute(sql)
     except Exception as e:
